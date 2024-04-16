@@ -1,10 +1,14 @@
 'use client';
 import { CityExtendedCard } from '@/components/cityExtendedCard';
+import { GoBack } from '@/components/goBack';
+import { Typography } from '@/components/typografhy';
+import { TextType } from '@/constants/textType';
 import { useAppContext } from '@/context';
 import { WeatherForecast } from '@/models/weatherForecast';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from './page.module.css';
+import { Skeleton } from '@/components/skeleton';
+import { FullContainer } from '@/components/container';
 
 export default function Forecast({ params }: { params: { name: string } }) {
     const { loading, handleLoading } = useAppContext();
@@ -25,16 +29,23 @@ export default function Forecast({ params }: { params: { name: string } }) {
         handleForecast();
     }, [params.name]);
 
-    if (!forecast || loading) return 'Cargando...';
+    if (!forecast?.city && loading) return <FullContainer children={<Skeleton rows={16} />} />;
+    if (!forecast?.city && !loading)
+        return (
+            <FullContainer>
+                <Typography text={`No existe ciudad con ese nombre`} type={TextType.SUBTITLE} />
+                <GoBack />
+            </FullContainer>
+        );
     return (
         <div className={styles.forecast}>
-            <p>Detalle extendido:</p>
-            <div>
+            <div className={styles.forecastHead}>
+                <Typography text={`Detalle extendido de la ciudad`} type={TextType.TITLE} />
+            </div>
+            <div className={styles.card}>
                 <CityExtendedCard city={forecast} />
             </div>
-            <Link href={'/'}>
-                <p>Volver</p>
-            </Link>
+            <GoBack />
         </div>
     );
 }

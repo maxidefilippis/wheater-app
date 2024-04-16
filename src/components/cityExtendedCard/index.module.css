@@ -1,26 +1,27 @@
 .card {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     background: var(--container-background);
     border-radius: var(--container-border-radius);
     border: 2px solid var(--container-border);
-    padding: 1rem 1.5rem 1.5rem;
+    padding: 1rem 2rem;
     -webkit-box-shadow: var(--container-shadow) 10px 10px;
     box-shadow: var(--container-shadow) 10px 10px;
+    min-height: 500px;
 }
-.favorite {
-    width: fit-content;
-}
-.favorite svg {
-    cursor: pointer;
-}
-.row {
+.title {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding-bottom: 1rem;
+    padding: 0.9rem;
 }
-.row h2:hover {
-    cursor: pointer;
-    color: var(--terciary-color);
+.props {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0.9rem;
+    padding-top: 0;
+}
+.temp{
+    padding: 1rem;
 }

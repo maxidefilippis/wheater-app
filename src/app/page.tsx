@@ -47,9 +47,7 @@ export default function Home() {
                 {loading && <Typography text="Buscando..." />}
                 {!loading && state?.cod === ApiCodes.NOT_FOUND && <Typography text="Su búsqueda no encontró resultados..." />}
             </div>
-            <div className={styles.results}>
-                {state?.cod === ApiCodes.OK && <CityCard city={state} favorites={favorites} handleFavorite={handleFavorite} />}
-            </div>
+            <div className={styles.results}>{state?.cod === ApiCodes.OK && <CityCard city={state} />}</div>
         </div>
     );
 }

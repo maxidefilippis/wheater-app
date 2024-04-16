@@ -1,5 +1,11 @@
-.favContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
-    gap: 2rem;
+.forecast {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.forecastHead {
+    padding-block: 1rem;
+}
+.card {
+    padding-block: 1rem 2rem;
 }

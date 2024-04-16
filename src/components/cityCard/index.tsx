@@ -1,3 +1,4 @@
+import { useAppContext } from '@/context';
 import { getWeatherIcon } from '@/functions/getWeatherIcon';
 import { isCityInFavorites } from '@/functions/isCityInFavorites';
 import { convertKelvinToCelsius } from '@/functions/showCelsius';
@@ -10,12 +11,11 @@ import styles from './index.module.css';
 
 interface CityCardProps {
     city: WeatherData;
-    favorites: WeatherData[];
-    handleFavorite: any;
 }
-export const CityCard = ({ city, favorites, handleFavorite }: CityCardProps) => {
-    if (!city.id) return;
+export const CityCard = ({ city }: CityCardProps) => {
+    const { favorites, handleFavorite } = useAppContext();
 
+    if (!city.id) return;
     return (
         <div className={styles.card}>
             <div className={styles.favorite} onClick={() => handleFavorite(city)}>
