@@ -1,0 +1,16 @@
+.property {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    border-bottom: 1px dotted var(--light-grey);
+    padding-block: 0.1rem;
+}
+.property label {
+    color: var(--secondary-color);
+    font-weight: bold;
+    font-size: 18px;
+}
+.property p {
+    text-align: right;
+}
