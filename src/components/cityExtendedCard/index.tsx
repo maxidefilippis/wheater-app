@@ -10,11 +10,10 @@ interface CityExtendedCardProps {
     city: WeatherForecast;
 }
 export const CityExtendedCard = ({ city }: CityExtendedCardProps) => {
+    const yAxis = useMemo(() => city?.list.map((value) => Number(convertKelvinToCelsius(value.main.temp))), [city]);
+    const xAxis = useMemo(() => city?.list.map((value) => value.dt_txt), [city]);
+
     if (city.cod !== '200') return;
-
-    const yAxis = useMemo(() => city.list.map((value) => Number(convertKelvinToCelsius(value.main.temp))), [city]);
-    const xAxis = useMemo(() => city.list.map((value) => value.dt_txt), [city]);
-
     return (
         <div className={styles.card}>
             <div className={styles.title}>

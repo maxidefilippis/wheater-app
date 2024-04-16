@@ -15,27 +15,28 @@ export default function Forecast({ params }: { params: { name: string } }) {
     const { loading, handleLoading } = useAppContext();
     const [forecast, setForecast] = useState<WeatherForecast>({} as WeatherForecast);
 
-    const handleForecast = () => {
+    useEffect(() => {
         handleLoading(true);
         fetch(`${apiUrl}/forecast?q=${params?.name}&appid=${apiKey}&lang=ES`)
             .then((res) => res.json())
             .then((data) => setForecast(data))
             .catch((error) => console.log({ error }))
             .finally(() => handleLoading(false));
-    };
-
-    useEffect(() => {
-        handleForecast();
     }, [params.name]);
 
-    if (!forecast?.city && loading) return <FullContainer children={<Skeleton rows={16} />} />;
-    if (!forecast?.city && !loading)
+    if (!forecast?.city) {
         return (
             <FullContainer>
-                <Typography text={`No existe ciudad con ese nombre`} type={TextType.SUBTITLE} />
-                <GoBack />
+                {loading && <Skeleton rows={16} />}
+                {!loading && (
+                    <>
+                        <Typography text={`No existe ciudad con ese nombre`} type={TextType.SUBTITLE} />
+                        <GoBack />
+                    </>
+                )}
             </FullContainer>
         );
+    }
     return (
         <div className={styles.forecast}>
             <div className={styles.forecastHead}>
