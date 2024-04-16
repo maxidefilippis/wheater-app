@@ -1,3 +1,4 @@
+import { AppWrapper } from '@/context';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import styles from './layout.module.css';
@@ -19,9 +20,11 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={inter.className}>
-                <header className={styles.header}></header>
-                <main className={styles.main}>{children}</main>
-                <footer className={styles.footer}></footer>
+                <AppWrapper>
+                    <header className={styles.header}></header>
+                    <main className={styles.main}>{children}</main>
+                    <footer className={styles.footer}></footer>
+                </AppWrapper>
             </body>
         </html>
     );
