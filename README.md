@@ -40,7 +40,7 @@ API_URL=https://api.openweathermap.org/data/2.5
  npm run dev
 ```
 
-6. Una vez que el servidor esté corriendo, puedes acceder a la aplicación desde tu navegador web visitando http://localhost:3000 .
+6. Una vez que el servidor esté corriendo, puedes acceder a la aplicación desde tu navegador web visitando http://localhost:3000 
 
 ## Deploy
 
