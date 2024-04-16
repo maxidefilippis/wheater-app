@@ -1,6 +1,7 @@
-import { Wheater } from '@/constants/wheater';
-import { CloudsIcon } from '@/components/icons/clouds';
 import { ClearIcon } from '@/components/icons/clear';
+import { CloudsIcon } from '@/components/icons/clouds';
+import { SunnyIcon } from '@/components/icons/sunny';
+import { Wheater } from '@/constants/wheater';
 
 export const getWeatherIcon = (wheater: string) => {
     switch (wheater) {
@@ -8,5 +9,7 @@ export const getWeatherIcon = (wheater: string) => {
             return <CloudsIcon />;
         case Wheater.CLEAR:
             return <ClearIcon />;
+        default:
+            return <SunnyIcon />;
     }
 };
