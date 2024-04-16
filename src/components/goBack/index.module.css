@@ -1,0 +1,8 @@
+.back {
+    display: flex;
+    justify-content: center;
+    padding-block: 1rem 2rem;
+}
+.back a {
+    font-weight: bold;
+}
