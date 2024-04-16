@@ -1,5 +1,8 @@
 'use client';
+import { Button } from '@/components/button';
 import { CityCard } from '@/components/cityCard';
+import { InputText } from '@/components/input';
+import { Typography } from '@/components/typografhy';
 import { ApiCodes } from '@/constants/apiCodes';
 import { useAppContext } from '@/context';
 import { WeatherData } from '@/models/weatherData';
@@ -22,18 +25,31 @@ export default function Home() {
             .then((res) => res.json())
             .then((data) => setState(data))
             .catch((error) => console.log({ error }))
-            .finally(() => handleLoading(false));
+            .finally(() => {
+                setSearch('');
+                handleLoading(false);
+            });
     };
 
     return (
         <div className={styles.home}>
-            <h1>Weather App</h1>
-            <Link href={'/favorites'}>Favoritos ({favorites.length})</Link>
-            <input type="text" value={search} onChange={handleInputChange} />
-            <button onClick={handleSearch}>search</button>
-            {loading && <div>Loading...</div>}
-            {state?.cod === ApiCodes.OK && <CityCard city={state} favorites={favorites} handleFavorite={handleFavorite} />}
-            {state?.cod === ApiCodes.NOT_FOUND && <div>Su búsqueda no encontró resultados</div>}
+            <div className={styles.favorites}>
+                <Typography text="Ingrese el nombre de una ciudad" />
+                <Link href={'/favorites'}>Favoritos ({favorites.length})</Link>
+            </div>
+            <div className={styles.searchBox}>
+                <InputText value={search} onChange={handleInputChange} />
+                <Button onClick={handleSearch} disabled={!search}>
+                    Buscar
+                </Button>
+            </div>
+            <div className={styles.errorsContainer}>
+                {loading && <Typography text="Buscando..." />}
+                {!loading && state?.cod === ApiCodes.NOT_FOUND && <Typography text="Su búsqueda no encontró resultados..." />}
+            </div>
+            <div className={styles.results}>
+                {state?.cod === ApiCodes.OK && <CityCard city={state} favorites={favorites} handleFavorite={handleFavorite} />}
+            </div>
         </div>
     );
 }

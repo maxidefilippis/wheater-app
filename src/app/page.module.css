@@ -3,3 +3,22 @@
     width: 100%;
     flex-direction: column;
 }
+.favorites {
+    display: flex;
+    justify-content: space-between;
+    padding-block: 1rem;
+}
+.searchBox {
+    display: flex;
+    gap: 1rem;
+}
+.errorsContainer {
+    display: flex;
+    align-items: center;
+    padding-block: 1rem;
+    height: 50px;
+}
+.results {
+    display: flex;
+    padding-block: 1rem;
+}
