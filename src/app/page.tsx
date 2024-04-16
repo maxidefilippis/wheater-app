@@ -33,7 +33,7 @@ export default function Home() {
 
     return (
         <div className={styles.home}>
-            <div className={styles.favorites}>
+            <div className={styles.homeHead}>
                 <Typography text="Ingrese el nombre de una ciudad" />
                 <Link href={'/favorites'}>Favoritos ({favorites.length})</Link>
             </div>

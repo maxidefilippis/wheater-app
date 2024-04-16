@@ -3,7 +3,7 @@
     width: 100%;
     flex-direction: column;
 }
-.favorites {
+.homeHead {
     display: flex;
     justify-content: space-between;
     padding-block: 1rem;
