@@ -34,6 +34,6 @@ export const AppWrapper = ({ children }: { children: React.ReactNode }) => {
 
 export const useAppContext = () => {
     const context = useContext(AppContext);
-    if (!context) throw new Error('Error with context');
+    if (!context) throw new Error('Error en el contexto');
     return context;
 };
