@@ -22,3 +22,13 @@
     display: flex;
     padding-block: 1rem;
 }
+@media (max-width: 600px) {
+    .homeHead {
+        flex-direction: column-reverse;
+        gap: 2rem;
+    }
+    .searchBox {
+        flex-direction: column;
+        padding-top: 0.5rem;
+    }
+}
