@@ -1,5 +1,6 @@
 import { getWeatherIcon } from '@/functions/getWeatherIcon';
 import { isCityInFavorites } from '@/functions/isCityInFavorites';
+import { convertKelvinToCelsius } from '@/functions/showCelsius';
 import { WeatherData } from '@/models/weatherData';
 import Link from 'next/link';
 import { DataProp } from '../dataProp';
@@ -26,11 +27,10 @@ export const CityCard = ({ city, favorites, handleFavorite }: CityCardProps) => 
                 </Link>
                 {getWeatherIcon(city.weather[0].main)}
             </div>
-            <DataProp label="Clima" value={String(city.main.temp)} />
-            <DataProp label="Humedad" value={String(city.main.humidity)} />
-            <DataProp label="Presión" value={String(city.main.pressure)} />
-            <DataProp label="Temperatura Máxima" value={String(city.main.temp_max)} />
-            <DataProp label="Sensación Térmica" value={String(city.main.feels_like)} />
+            <DataProp label="Temperatura" value={`${String(convertKelvinToCelsius(city.main.temp))}°`} />
+            <DataProp label="Sensación Térmica" value={`${String(convertKelvinToCelsius(city.main.feels_like))}°`} />
+            <DataProp label="Humedad" value={`${String(city.main.humidity)}%`} />
+            <DataProp label="Presión" value={`${String(city.main.pressure)} hPa`} />
         </div>
     );
 };
