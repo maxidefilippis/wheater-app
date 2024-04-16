@@ -1,23 +1,29 @@
 'use client';
 import { CityCard } from '@/components/cityCard';
+import { Typography } from '@/components/typografhy';
+import { TextType } from '@/constants/textType';
 import { useAppContext } from '@/context';
-import styles from './page.module.css';
 import Link from 'next/link';
+import styles from './page.module.css';
 
 export default function Favorites() {
     const { favorites, handleFavorite } = useAppContext();
 
     return (
         <div className={styles.favorites}>
-            <p>Mis ciudades Favoritas:</p>
-            <div className={styles.favContainer}>
+            <div className={styles.favoritesHead}>
+                <Typography text="Mis ciudades favoritas" type={TextType.TITLE} />
+            </div>
+            <div className={styles.cardsContainer}>
                 {favorites.map((city) => (
                     <CityCard key={city.id} city={city} favorites={favorites} handleFavorite={handleFavorite} />
                 ))}
             </div>
-            <Link href={'/'}>
-                <p>Volver</p>
-            </Link>
+            <div className={styles.back}>
+                <Link href={'/'}>
+                    <Typography text="Volver" />
+                </Link>
+            </div>
         </div>
     );
 }

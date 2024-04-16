@@ -1,5 +1,22 @@
-.favContainer {
+.favorites {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.favoritesHead {
+    padding-block: 1rem;
+}
+.cardsContainer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
     gap: 2rem;
+    padding-block: 1rem 2rem;
+}
+.back {
+    display: flex;
+    justify-content: center;
+    padding-block: 1rem 2rem;
+}
+.back a {
+    font-weight: bold;
 }
