@@ -1,0 +1,35 @@
+.button {
+    cursor: pointer;
+    color: var(--black);
+    background: var(--container-background);
+    border-radius: var(--container-border-radius);
+    border: 1px solid var(--grey);
+    -webkit-box-shadow: 4px 4px var(--container-shadow);
+    box-shadow: 4px 4px var(--container-shadow);
+    font-size: 14px;
+    padding: 8px 10px;
+    font-weight: 600;
+    min-width: 120px;
+}
+.button:hover:not(:disabled) {
+    background: var(--container-shadow);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transform: translate3d(2px, 2px, 0);
+    -moz-transform: translate3d(2px, 2px, 0);
+    transform: translate3d(2px, 2px, 0);
+    -webkit-transition: all 0.1s ease;
+    -moz-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+}
+.button:disabled {
+    cursor: default;
+    background: var(--button-disabled);
+    opacity: 0.5;
+}
+@media (max-width: 600px) {
+    .button {
+        height: 40px;
+        width: 100%;
+    }
+}
