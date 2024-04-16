@@ -1,7 +1,8 @@
 'use client';
+import { LocalStorageKey, LocalStorageService } from '@/app/services/localStorageService';
 import { isCityInFavorites } from '@/functions/isCityInFavorites';
 import { WeatherData } from '@/models/weatherData';
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 interface Context {
     favorites: WeatherData[];
@@ -13,8 +14,9 @@ interface Context {
 const AppContext = createContext<Context | undefined>(undefined);
 
 export const AppWrapper = ({ children }: { children: React.ReactNode }) => {
+    const localStorage = new LocalStorageService();
     const [loading, setLoading] = useState<boolean>(false);
-    const [favorites, setFavorites] = useState<WeatherData[]>([]);
+    const [favorites, setFavorites] = useState<WeatherData[]>(localStorage.getItem(LocalStorageKey.FAVORITES) ?? []);
 
     const handleLoading = (isLoading: boolean) => {
         setLoading(isLoading);
@@ -28,6 +30,10 @@ export const AppWrapper = ({ children }: { children: React.ReactNode }) => {
             setFavorites((prevFavorites) => prevFavorites.filter((favorite) => favorite.id !== newFavorite.id));
         }
     };
+
+    useEffect(() => {
+        localStorage.setItem(LocalStorageKey.FAVORITES, favorites);
+    }, [favorites]);
 
     return <AppContext.Provider value={{ favorites, handleFavorite, loading, handleLoading }}>{children}</AppContext.Provider>;
 };

@@ -1,14 +1,15 @@
 'use client';
 import { CityExtendedCard } from '@/components/cityExtendedCard';
+import { FullContainer } from '@/components/container';
 import { GoBack } from '@/components/goBack';
+import { Skeleton } from '@/components/skeleton';
 import { Typography } from '@/components/typografhy';
+import { apiKey, apiUrl } from '@/constants/globals';
 import { TextType } from '@/constants/textType';
 import { useAppContext } from '@/context';
 import { WeatherForecast } from '@/models/weatherForecast';
 import { useEffect, useState } from 'react';
 import styles from './page.module.css';
-import { Skeleton } from '@/components/skeleton';
-import { FullContainer } from '@/components/container';
 
 export default function Forecast({ params }: { params: { name: string } }) {
     const { loading, handleLoading } = useAppContext();
@@ -16,9 +17,7 @@ export default function Forecast({ params }: { params: { name: string } }) {
 
     const handleForecast = () => {
         handleLoading(true);
-        fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${params?.name}&appid=5ecdde6fa83217acb2e8c3705318cf2e&lang=ES`, {
-            method: 'GET',
-        })
+        fetch(`${apiUrl}/forecast?q=${params?.name}&appid=${apiKey}&lang=ES`)
             .then((res) => res.json())
             .then((data) => setForecast(data))
             .catch((error) => console.log({ error }))
