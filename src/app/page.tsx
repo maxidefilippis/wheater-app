@@ -29,7 +29,7 @@ export default function Home() {
         <div className={styles.home}>
             <div className={styles.homeHead}>
                 <Typography text="Ingrese el nombre de una ciudad" />
-                <Link href={'/favorites'}>Favoritos {favorites?.length ? `(${favorites.length})` : ``}</Link>
+                <Link href={'/favorites'}>Favoritos {`(${favorites?.length})`}</Link>
             </div>
             <div className={styles.searchBox}>
                 <InputText value={search} onChange={handleInputChange} />
