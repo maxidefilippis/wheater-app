@@ -14,9 +14,7 @@ export default function Forecast({ params }: { params: { name: string } }) {
     const { data, error, isLoading } = useFetch<WeatherForecast>(`${apiUrl}/forecast?q=${params?.name}&appid=${apiKey}&lang=ES`, true);
 
     if (isLoading) return <Skeleton rows={16} />;
-
     if (data?.cod != ApiCodes.OK || error) return <BackComponent message={`No existe ciudad con ese nombre`} />;
-
     return (
         <div className={styles.forecast}>
             <div className={styles.forecastHead}>

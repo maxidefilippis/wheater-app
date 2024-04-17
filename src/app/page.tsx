@@ -21,7 +21,6 @@ export default function Home() {
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(event.target.value);
     };
-
     const handleSearch = () => {
         setURL(`${apiUrl}/weather?q=${search}&appid=${apiKey}&lang=ES`);
     };
@@ -30,7 +29,7 @@ export default function Home() {
         <div className={styles.home}>
             <div className={styles.homeHead}>
                 <Typography text="Ingrese el nombre de una ciudad" />
-                <Link href={'/favorites'}>Favoritos ({favorites?.length})</Link>
+                <Link href={'/favorites'}>Favoritos {favorites?.length ? `(${favorites.length})` : ``}</Link>
             </div>
             <div className={styles.searchBox}>
                 <InputText value={search} onChange={handleInputChange} />

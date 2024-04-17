@@ -7,6 +7,7 @@ export function useFetch<T>(endpoint: string, startLoading: boolean) {
 
     useEffect(() => {
         if (endpoint) {
+            setIsLoading(true);
             fetch(endpoint)
                 .then((response) => response.json())
                 .then((response) => {
