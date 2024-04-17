@@ -9,27 +9,21 @@ import { useAppContext } from '@/context';
 import { WeatherData } from '@/models/weatherData';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useFetch } from './hooks/useFetch';
 import styles from './page.module.css';
 
 export default function Home() {
-    const { favorites, loading, handleLoading } = useAppContext();
+    const { favorites } = useAppContext();
     const [search, setSearch] = useState<string>('');
-    const [state, setState] = useState<WeatherData>({} as WeatherData);
+    const [url, setURL] = useState('');
+    const { data, error, isLoading } = useFetch<WeatherData>(url, false);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(event.target.value);
     };
 
     const handleSearch = () => {
-        handleLoading(true);
-        fetch(`${apiUrl}/weather?q=${search}&appid=${apiKey}&lang=ES`)
-            .then((res) => res.json())
-            .then((data) => setState(data))
-            .catch((error) => console.log({ error }))
-            .finally(() => {
-                setSearch('');
-                handleLoading(false);
-            });
+        setURL(`${apiUrl}/weather?q=${search}&appid=${apiKey}&lang=ES`);
     };
 
     return (
@@ -45,10 +39,10 @@ export default function Home() {
                 </Button>
             </div>
             <div className={styles.errorsContainer}>
-                {loading && <Typography text="Buscando..." />}
-                {!loading && state?.cod === ApiCodes.NOT_FOUND && <Typography text="Su búsqueda no encontró resultados..." />}
+                {isLoading && <Typography text="Buscando..." />}
+                {!isLoading && (data?.cod === ApiCodes.NOT_FOUND || error) && <Typography text="Su búsqueda no encontró resultados..." />}
             </div>
-            <div className={styles.results}>{state?.cod === ApiCodes.OK && <CityCard city={state} />}</div>
+            <div className={styles.results}>{data?.cod === ApiCodes.OK && <CityCard city={data} />}</div>
         </div>
     );
 }
