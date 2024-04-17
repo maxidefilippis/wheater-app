@@ -28,8 +28,8 @@ npm install
 4. Crea un archivo .env en la raíz del directorio con las siguientes variables:
 
 ```bash
-API_KEY= < Tu api key de openweathermap >
-API_URL=https://api.openweathermap.org/data/2.5
+NEXT_PUBLIC_API_KEY= < Tu api key de openweathermap >
+NEXT_PUBLIC_API_URL=https://api.openweathermap.org/data/2.5
 ```
 
 ## Uso
